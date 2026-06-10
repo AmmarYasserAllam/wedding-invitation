@@ -618,8 +618,9 @@
     const audio = document.getElementById('weddingMusic');
     const audioBtn = document.getElementById('audioBtn');
 
-    envelope.classList.add('open');
-    tapText.style.display = 'none';
+        envelope.classList.add('open');
+        tapText.style.display = 'none';
+        document.querySelector('.header-logo').style.display = 'none';
 
     audio.play().then(() => {
         audioBtn.style.display = 'flex';
