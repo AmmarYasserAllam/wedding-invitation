@@ -642,11 +642,36 @@
             // استبدل الرابط أدناه برابط الـ Web App المستخرج من Google Apps Script
             const scriptURL = 'https://script.google.com/macros/s/AKfycbwqRQS6pD8ELUkgQSiIK_ZL9rShLu6kwrD1aIAFjfnwZnY-zRp0xq90UFObqhcX95Q5Zw/exec';
             
-            if(scriptURL === 'https://script.google.com/macros/s/AKfycbwqRQS6pD8ELUkgQSiIK_ZL9rShLu6kwrD1aIAFjfnwZnY-zRp0xq90UFObqhcX95Q5Zw/exec') {
-                alert("Thank you! (Please configure your Google Script URL to save live data)");
-                document.getElementById('messageForm').reset();
-                return;
-            }
+           function handleRSVP(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const name = document.getElementById('userName').value;
+    const message = document.getElementById('userMessage').value;
+    
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwqRQS6pD8ELUkgQSiIK_ZL9rShLu6kwrD1aIAFjfnwZnY-zRp0xq90UFObqhcX95Q5Zw/exec';
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('message', message);
+
+    fetch(scriptURL, { method: 'POST', body: formData })
+        .then(response => {
+            alert("Thank you for your beautiful congratulations! 🌸");
+            document.getElementById('messageForm').reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = "RSVP";
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            alert("Something went wrong. Please try WhatsApp instead.");
+            submitBtn.disabled = false;
+            submitBtn.textContent = "RSVP";
+        });
+}
 
             submitBtn.disabled = true;
             submitBtn.textContent = "Sending...";
