@@ -107,15 +107,15 @@
             text-transform: uppercase;
         }
 
-        .envelope-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 380px;
-            height: 280px;
-            margin: 20px auto;
-            perspective: 1000px;
-            cursor: pointer;
-        }
+                    .envelope-wrapper {
+                position: relative;
+                width: 90vw;
+                max-width: 380px;
+                height: 280px;
+                margin: 20px auto;
+                perspective: 1000px;
+                cursor: pointer;
+            }
 
         .envelope {
             position: absolute;
@@ -127,35 +127,44 @@
             transition: transform 0.8s ease;
         }
 
-        .envelope::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            width: 0;
-            height: 0;
-            border-left: 190px solid transparent;
-            border-right: 190px solid transparent;
-            border-top: 140px solid #dfd6c8;
-            transform-origin: top;
-            transition: transform 0.6s ease 0.4s, z-index 0.2s ease 0.4s;
-            z-index: 4;
-        }
+                .envelope::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                width: 0;
+                height: 0;
+                border-left: 45vw solid transparent;
+                border-right: 45vw solid transparent;
+                border-top: 33vw solid #dfd6c8;
+                transform-origin: top;
+                transition: transform 0.6s ease 0.4s, z-index 0.2s ease 0.4s;
+                z-index: 4;
+            }
 
-        .wax-seal {
-            position: absolute;
-            top: 110px;
-            left: calc(50% - 30px);
-            width: 60px;
-            height: 60px;
-            background-color: var(--wax-seal);
-            border-radius: 50%;
-            z-index: 5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-            transition: transform 0.5s ease;
-        }
+            @media (min-width: 422px) {
+                .envelope::before {
+                    border-left: 190px solid transparent;
+                    border-right: 190px solid transparent;
+                    border-top: 140px solid #dfd6c8;
+                }
+            }
+
+                            .wax-seal {
+                    position: absolute;
+                    top: 110px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 60px;
+                    height: 60px;
+                    background-color: var(--wax-seal);
+                    border-radius: 50%;
+                    z-index: 5;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+                    transition: transform 0.5s ease;
+                }
 
         .wax-seal::after {
             content: "A&O";
@@ -188,8 +197,8 @@
             z-index: 1;
         }
 
-        .envelope-wrapper.open .wax-seal {
-            transform: scale(0) rotate(90deg);
+            .envelope-wrapper.open .wax-seal {
+            transform: translateX(-50%) scale(0) rotate(90deg);
         }
 
         /* --- SECTION 2: THE MAIN INVITATION CARD --- */
@@ -443,6 +452,8 @@
             text-align: center;
         }
 
+
+        
         .footer-line {
             width: 40px;
             height: 1px;
@@ -485,7 +496,7 @@
 
     <!-- SECTION 1: INTERACTIVE ENVELOPE LANDING -->
     <section class="section-landing" id="landingSection">
-        <div class="header-logo">The Wedding Invitation</div>
+        <div class="header-logo">Ammar & Omnia Wedding Invitation</div>
         
         <div class="envelope-wrapper" id="envelopeWrapper" onclick="openInvitation()">
             <div class="envelope"></div>
@@ -493,8 +504,19 @@
         </div>
         
         <div class="tap-text" id="tapText">TAP TO OPEN</div>
+    
+        <!-- LUXURY BRANDING FOOTER -->
+        <footer class="luxury-footer">
+            <div class="footer-line"></div>
+            <div class="designer-tag">DESIGNED BY AMMAR ALLAM♥️</div>
+        </footer>
+    </div>
+
+    
     </section>
 
+    
+    
     <!-- SECTION 2: THE MAIN REVEALED CARD -->
     <div class="card-reveal-container" id="revealCard">
         <div class="couple-illustration">
@@ -520,11 +542,11 @@
             <p style="font-weight: 500;">AlMasa Palace Hall, Mansoura</p>
         </div>
     </div>
-
+<div class="ornament"><span>🌸 ⚜️ 🌸</span></div>
     <!-- SECTION 3: TIMER & LOCATION CARD -->
     <div class="card-reveal-container" id="timerMapCard">
         <section class="section-countdown-map">
-            <h3 class="countdown-title">Counting Down to Our Day</h3>
+            <h3 class="countdown-title">Counting Down to Our Day♥️</h3>
             
             <div class="timer-container">
                 <div class="time-box">
@@ -545,18 +567,20 @@
                 </div>
             </div>
 
-            <div class="ornament"><span>🌸 ⚜️ 🌸</span></div>
+                    <div class="ornament"><span>✨ 🌸 ✨</span></div>
+
 
             <h3 class="countdown-title" style="margin-top: 10px;">Getting There</h3>
             <div class="map-wrapper">
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.740605107235!2d31.58123187498555!3d30.83600197453463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f789c688dcdad9%3A0x10362a1eb1224731!2z2YLYp9i52Kkg2YLYtdixINin2YTZhdin2LPYqQ!5e1!3m2!1sen!2seg!4v1781085080480!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
         </section>
     </div>
+<div class="ornament"><span>🌸 ⚜️ 🌸</span></div>
 
     <!-- SECTION 4: RSVP LEAVE A MESSAGE CARD -->
     <div class="card-reveal-container" id="rsvpCard">
         <section class="rsvp-form-card">
-            <h3 class="countdown-title" style="font-family: 'Cinzel', serif;">Leave Us a message</h3>
+            <h3 class="countdown-title" style="font-family: 'Cinzel', serif;">🌸Leave Us a message🌸</h3>
             
             <form id="messageForm" onsubmit="handleRSVP(event)">
                 <div class="form-group">
@@ -578,7 +602,7 @@
         <!-- LUXURY BRANDING FOOTER -->
         <footer class="luxury-footer">
             <div class="footer-line"></div>
-            <div class="designer-tag">DESIGNED BY AMMAR ALLAM</div>
+            <div class="designer-tag">DESIGNED BY AMMAR ALLAM♥️</div>
         </footer>
     </div>
 
