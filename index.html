@@ -585,28 +585,39 @@
     <!-- INTERACTIVE SCRIPTS -->
     <script>
         function openInvitation() {
-            const envelope = document.getElementById('envelopeWrapper');
-            const tapText = document.getElementById('tapText');
-            const card1 = document.getElementById('revealCard');
-            const card2 = document.getElementById('timerMapCard');
-            const card3 = document.getElementById('rsvpCard');
-            const audio = document.getElementById('weddingMusic');
-            const audioBtn = document.getElementById('audioBtn');
+    const envelope = document.getElementById('envelopeWrapper');
+    const tapText = document.getElementById('tapText');
+    const landingSection = document.getElementById('landingSection'); // 👈 grab the whole section
+    const card1 = document.getElementById('revealCard');
+    const card2 = document.getElementById('timerMapCard');
+    const card3 = document.getElementById('rsvpCard');
+    const audio = document.getElementById('weddingMusic');
+    const audioBtn = document.getElementById('audioBtn');
 
-            envelope.classList.add('open');
-            tapText.style.display = 'none';
+    envelope.classList.add('open');
+    tapText.style.display = 'none';
 
-            audio.play().then(() => {
-                audioBtn.style.display = 'flex';
-            }).catch(err => console.log("Audio play deferred: ", err));
+    audio.play().then(() => {
+        audioBtn.style.display = 'flex';
+    }).catch(err => console.log("Audio play deferred: ", err));
 
-            setTimeout(() => {
-                card1.classList.add('show');
-                card2.classList.add('show');
-                card3.classList.add('show');
-                card1.scrollIntoView({ behavior: 'smooth' });
-            }, 1200);
-        }
+    // Step 1: After 1.2s, fade out the landing section smoothly
+    setTimeout(() => {
+        landingSection.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        landingSection.style.opacity = '0';
+        landingSection.style.transform = 'scale(0.95)';
+    }, 1200);
+
+    // Step 2: After the fade finishes, completely remove it from the page layout
+    setTimeout(() => {
+        landingSection.style.display = 'none';
+
+        card1.classList.add('show');
+        card2.classList.add('show');
+        card3.classList.add('show');
+        card1.scrollIntoView({ behavior: 'smooth' });
+    }, 1900); // 1200ms wait + 600ms fade = 1800ms, a tiny buffer added
+}
 
         function toggleAudio() {
             const audio = document.getElementById('weddingMusic');
