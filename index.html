@@ -35,37 +35,70 @@
         }
 
         /* --- ROMANTIC FALLING PETALS EFFECT --- */
-        .petals-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 99;
-            overflow: hidden;
-        }
+       .petals-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 99;
+    overflow: hidden;
+}
 
-        .petal {
-            position: absolute;
-            background: linear-gradient(135deg, #ffb7b2 0%, #ffccd5 100%);
-            border-radius: 50% 0 50% 50%;
-            opacity: 0.4;
-            animation: fly 10s infinite linear;
-        }
+/* --- PETALS --- */
+.petal {
+    position: absolute;
+    top: -20px;
+    border-radius: 50% 0 50% 50%;
+    opacity: 0;
+    animation: petalFall linear infinite;
+}
 
-        @keyframes fly {
-            0% { transform: translateY(-10%) rotate(0deg); left: calc(10% + 80% * var(--x, 0.5)); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateY(110%) rotate(360deg); left: calc(var(--x, 0.5) * 100% + 20px); opacity: 0; }
-        }
+@keyframes petalFall {
+    0%   { transform: translateY(0) rotate(0deg) translateX(0px); opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(110vh) rotate(720deg) translateX(40px); opacity: 0; }
+}
 
-        .petal:nth-child(1) { width: 15px; height: 12px; --x: 0.1; animation-duration: 12s; animation-delay: 0s; }
-        .petal:nth-child(2) { width: 10px; height: 8px; --x: 0.25; animation-duration: 8s; animation-delay: 2s; }
-        .petal:nth-child(3) { width: 18px; height: 14px; --x: 0.5; animation-duration: 15s; animation-delay: 1s; }
-        .petal:nth-child(4) { width: 12px; height: 10px; --x: 0.75; animation-duration: 10s; animation-delay: 4s; }
-        .petal:nth-child(5) { width: 14px; height: 11px; --x: 0.9; animation-duration: 14s; animation-delay: 3s; }
+.petal:nth-child(1)  { width: 14px; height: 11px; left: 5%;  background: linear-gradient(135deg, #ffb7b2, #ffccd5); animation-duration: 11s; animation-delay: 0s;   }
+.petal:nth-child(2)  { width: 10px; height: 8px;  left: 15%; background: linear-gradient(135deg, #f9a8b8, #ffd6e0); animation-duration: 14s; animation-delay: 2s;   }
+.petal:nth-child(3)  { width: 16px; height: 13px; left: 28%; background: linear-gradient(135deg, #ffb7b2, #ff9eac); animation-duration: 9s;  animation-delay: 1s;   }
+.petal:nth-child(4)  { width: 12px; height: 9px;  left: 42%; background: linear-gradient(135deg, #ffc8d4, #ffaabb); animation-duration: 13s; animation-delay: 3.5s; }
+.petal:nth-child(5)  { width: 18px; height: 14px; left: 55%; background: linear-gradient(135deg, #ffb7b2, #ffccd5); animation-duration: 10s; animation-delay: 0.5s; }
+.petal:nth-child(6)  { width: 11px; height: 9px;  left: 68%; background: linear-gradient(135deg, #f9a8b8, #ffd6e0); animation-duration: 15s; animation-delay: 4s;   }
+.petal:nth-child(7)  { width: 15px; height: 12px; left: 78%; background: linear-gradient(135deg, #ffb7b2, #ff9eac); animation-duration: 12s; animation-delay: 1.5s; }
+.petal:nth-child(8)  { width: 9px;  height: 7px;  left: 88%; background: linear-gradient(135deg, #ffc8d4, #ffaabb); animation-duration: 8s;  animation-delay: 6s;   }
+.petal:nth-child(9)  { width: 13px; height: 10px; left: 22%; background: linear-gradient(135deg, #ffb7b2, #ffccd5); animation-duration: 16s; animation-delay: 7s;   }
+.petal:nth-child(10) { width: 17px; height: 13px; left: 62%; background: linear-gradient(135deg, #f9a8b8, #ffd6e0); animation-duration: 11s; animation-delay: 2.5s; }
+
+/* --- SNOWFLAKES / SPARKLES --- */
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: var(--gold-primary);
+    font-size: 16px;
+    opacity: 0;
+    animation: snowFall linear infinite;
+    user-select: none;
+}
+
+@keyframes snowFall {
+    0%   { transform: translateY(0) rotate(0deg) translateX(0px); opacity: 0; }
+    10%  { opacity: 0.8; }
+    90%  { opacity: 0.4; }
+    100% { transform: translateY(110vh) rotate(360deg) translateX(-30px); opacity: 0; }
+}
+
+.snowflake:nth-child(11) { left: 8%;  font-size: 12px; animation-duration: 10s; animation-delay: 0s;   }
+.snowflake:nth-child(12) { left: 20%; font-size: 18px; animation-duration: 13s; animation-delay: 3s;   }
+.snowflake:nth-child(13) { left: 35%; font-size: 10px; animation-duration: 8s;  animation-delay: 1s;   }
+.snowflake:nth-child(14) { left: 50%; font-size: 20px; animation-duration: 15s; animation-delay: 5s;   }
+.snowflake:nth-child(15) { left: 65%; font-size: 14px; animation-duration: 11s; animation-delay: 2s;   }
+.snowflake:nth-child(16) { left: 75%; font-size: 16px; animation-duration: 9s;  animation-delay: 4s;   }
+.snowflake:nth-child(17) { left: 90%; font-size: 11px; animation-duration: 14s; animation-delay: 6.5s; }
+.snowflake:nth-child(18) { left: 45%; font-size: 13px; animation-duration: 12s; animation-delay: 1.5s; }
 
         /* --- GLOBAL ORNATE ELEMENTS --- */
         .ornament {
@@ -475,13 +508,28 @@
 <body>
 
     <!-- Falling Rose Petals Background -->
-    <div class="petals-container">
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-    </div>
+   <div class="petals-container">
+    <!-- Rose Petals -->
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <!-- Gold Sparkle Snowflakes -->
+    <div class="snowflake">✦</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">✦</div>
+    <div class="snowflake">✿</div>
+    <div class="snowflake">✦</div>
+    <div class="snowflake">❄</div>
+    <div class="snowflake">✿</div>
+    <div class="snowflake">✦</div>
+</div>
 
     <!-- Wedding Background Audio Track -->
     <!-- ضع رابط تراك الأغنية المحددة الفعلي هنا بامتداد .mp3 بدلاً من الرابط التجريبي بالأسفل -->
@@ -503,7 +551,7 @@
             <div class="wax-seal"></div>
         </div>
         
-        <div class="tap-text" id="tapText">TAP TO OPEN</div>
+        <div class="tap-text" id="tapText">TAP TO OPEN💖</div>
     
         <!-- LUXURY BRANDING FOOTER -->
         <footer class="luxury-footer">
@@ -524,12 +572,12 @@
         </div>
 
         <!-- Ornate Romantic Floral Header -->
-        <div class="ornament"><span>🌸 A & O 🌸</span></div>
+        <div class="ornament"><span>♥️🤵‍♂️ A & O 👰‍♂️♥️</span></div>
 
         <div class="couple-names-sub">Ammar & Omnia</div>
 
         <p class="wedding-details" dir="rtl" style="font-style: italic;">
-            بقلوب تفيض بالحب والبهجة، يُشرفنا ويسعدنا دعوتكم لحضور حفل زفافنا المبهج.<br>
+            بقلوب تفيض بالحب والبهجة، يُشرفنا ويسعدنا دعوتكم لحضور حفل زفافنا المبهج 🪢🫶.<br>
             شاركونا فرحة العمر وتوثيق اللحظات الرومانسية السعيدة التي لا تنسى. 🌸
         </p>
 
@@ -538,8 +586,13 @@
         <div class="wedding-details">
             <p class="detail-highlight">SAVE THE DATE</p>
             <p style="font-weight: 500; margin: 5px 0;">Saturday, July 25, 2026</p>
+            
+            <div class="ornament"><span>💑💒</span></div>
+
             <p class="detail-highlight" style="margin-top: 15px;">VENUE</p>
             <p style="font-weight: 500;">AlMasa Palace Hall, Mansoura</p>
+        <div class="ornament"><span>✨ 🌸 ✨</span></div>
+
         </div>
     </div>
 <div class="ornament"><span>🌸 ⚜️ 🌸</span></div>
@@ -580,7 +633,7 @@
     <!-- SECTION 4: RSVP LEAVE A MESSAGE CARD -->
     <div class="card-reveal-container" id="rsvpCard">
         <section class="rsvp-form-card">
-            <h3 class="countdown-title" style="font-family: 'Cinzel', serif;">🌸Leave Us a message🌸</h3>
+            <h3 class="countdown-title" style="font-family: 'Cinzel', serif;">Leave Us a message🫰🌸</h3>
             
             <form id="messageForm" onsubmit="handleRSVP(event)">
                 <div class="form-group">
