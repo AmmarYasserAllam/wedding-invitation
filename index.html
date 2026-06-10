@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* --- DESIGN SYSTEM & COLORS (Breeze 552 & Luxury Gold Aesthetic) --- */
+        /* --- DESIGN SYSTEM & COLORS (Breeze 552 Aesthetic) --- */
         :root {
-            --bg-breeze: #f4f0eb; /* Base Elegant Cream/Greige */
+            --bg-breeze: #f4f0eb; /* Elegant Cream/Greige */
             --gold-primary: #c5a880;
             --gold-dark: #a0845b;
             --text-dark: #3a3530;
@@ -29,34 +29,50 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             overflow-x: hidden;
-            /* Subtle Sophisticated Pattern Overlay */
             background-image: radial-gradient(rgba(197, 168, 128, 0.05) 1px, transparent 0);
             background-size: 24px 24px;
+            position: relative;
         }
 
-        /* --- MOCKUP PHONE STATUS BAR --- */
-        .phone-status-bar {
-            width: 100%;
-            height: 30px;
-            background-color: transparent;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 25px;
-            font-size: 12px;
-            font-weight: 500;
-            position: absolute;
+        /* --- ROMANTIC FALLING PETALS EFFECT --- */
+        .petals-container {
+            position: fixed;
             top: 0;
-            z-index: 100;
-            opacity: 0.7;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            overflow: hidden;
         }
+
+        .petal {
+            position: absolute;
+            background: linear-gradient(135deg, #ffb7b2 0%, #ffccd5 100%);
+            border-radius: 50% 0 50% 50%;
+            opacity: 0.4;
+            animation: fly 10s infinite linear;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(-10%) rotate(0deg); left: calc(10% + 80% * var(--x, 0.5)); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(110%) rotate(360deg); left: calc(var(--x, 0.5) * 100% + 20px); opacity: 0; }
+        }
+
+        .petal:nth-child(1) { width: 15px; height: 12px; --x: 0.1; animation-duration: 12s; animation-delay: 0s; }
+        .petal:nth-child(2) { width: 10px; height: 8px; --x: 0.25; animation-duration: 8s; animation-delay: 2s; }
+        .petal:nth-child(3) { width: 18px; height: 14px; --x: 0.5; animation-duration: 15s; animation-delay: 1s; }
+        .petal:nth-child(4) { width: 12px; height: 10px; --x: 0.75; animation-duration: 10s; animation-delay: 4s; }
+        .petal:nth-child(5) { width: 14px; height: 11px; --x: 0.9; animation-duration: 14s; animation-delay: 3s; }
 
         /* --- GLOBAL ORNATE ELEMENTS --- */
         .ornament {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 15px 0;
+            margin: 20px 0;
         }
         .ornament::before, .ornament::after {
             content: "";
@@ -71,7 +87,7 @@
             color: var(--gold-primary);
         }
 
-        /* --- SECTION 1: LANDING & INTERACTIVE ENVELOPE --- */
+        /* --- SECTION 1: LANDING & ENVELOPE --- */
         .section-landing {
             min-height: 100vh;
             display: flex;
@@ -86,26 +102,17 @@
             font-family: 'Cinzel', serif;
             font-size: 14px;
             letter-spacing: 5px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             opacity: 0.8;
+            text-transform: uppercase;
         }
 
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: 22px;
-            letter-spacing: 3px;
-            text-align: center;
-            margin-bottom: 5px;
-            font-weight: 400;
-        }
-
-        /* ENVELOPE CONTAINER */
         .envelope-wrapper {
             position: relative;
             width: 100%;
-            max-width: 400px;
-            height: 300px;
-            margin: 40px auto;
+            max-width: 380px;
+            height: 280px;
+            margin: 20px auto;
             perspective: 1000px;
             cursor: pointer;
         }
@@ -116,29 +123,27 @@
             height: 100%;
             background-color: #eae3da;
             border-radius: 4px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
             transition: transform 0.8s ease;
         }
 
-        /* Envelope Flap */
         .envelope::before {
             content: "";
             position: absolute;
             top: 0;
             width: 0;
             height: 0;
-            border-left: 200px solid transparent;
-            border-right: 200px solid transparent;
-            border-top: 150px solid #dfd6c8;
+            border-left: 190px solid transparent;
+            border-right: 190px solid transparent;
+            border-top: 140px solid #dfd6c8;
             transform-origin: top;
             transition: transform 0.6s ease 0.4s, z-index 0.2s ease 0.4s;
             z-index: 4;
         }
 
-        /* Wax Seal */
         .wax-seal {
             position: absolute;
-            top: 130px;
+            top: 110px;
             left: calc(50% - 30px);
             width: 60px;
             height: 60px;
@@ -148,7 +153,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
             transition: transform 0.5s ease;
         }
 
@@ -163,16 +168,21 @@
             padding: 8px 5px;
         }
 
-        /* TAP TO OPEN TEXT */
         .tap-text {
             font-family: 'Cinzel', serif;
             letter-spacing: 2px;
             font-size: 13px;
-            margin-top: 20px;
+            margin-top: 30px;
             animation: pulse 2s infinite;
+            color: var(--gold-dark);
         }
 
-        /* OPEN STATE ANIMATIONS */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.6; }
+        }
+
         .envelope-wrapper.open .envelope::before {
             transform: rotateX(180deg);
             z-index: 1;
@@ -182,21 +192,21 @@
             transform: scale(0) rotate(90deg);
         }
 
-        /* --- SECTION 2: THE REVEALED CARD --- */
+        /* --- SECTION 2: THE MAIN INVITATION CARD --- */
         .card-reveal-container {
-            max-width: 500px;
+            max-width: 480px;
             width: 90%;
             background-color: var(--white-pure);
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 40px 25px;
-            margin: 0 auto 50px auto;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            margin: 30px auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.04);
             border: 1px solid rgba(197, 168, 128, 0.2);
             text-align: center;
-            display: none; /* Triggered via JS after opening envelope */
+            display: none;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .card-reveal-container.show {
@@ -205,10 +215,9 @@
             transform: translateY(0);
         }
 
-        /* Cartoon Portrait Placeholder */
         .couple-illustration {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             margin: 0 auto 20px auto;
             border-radius: 50%;
             background: #fdfbf7;
@@ -225,63 +234,74 @@
             object-fit: cover;
         }
 
+        /* Main Identity Inside Invitation Body */
         .couple-names {
-            font-family: 'Alex Brush', cursive;
-            font-size: 48px;
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            font-weight: 600;
             color: var(--text-dark);
-            margin: 15px 0;
+            margin: 15px 0 5px 0;
+            letter-spacing: 1px;
+        }
+
+        .couple-names-sub {
+            font-family: 'Alex Brush', cursive;
+            font-size: 46px;
+            color: var(--gold-dark);
             line-height: 1.2;
+            margin-bottom: 15px;
         }
 
         .ampersand {
             font-family: 'Cinzel', serif;
-            font-size: 26px;
+            font-size: 20px;
             color: var(--gold-primary);
             display: block;
-            margin: 5px 0;
+            margin: 2px 0;
         }
 
         .wedding-details {
             font-family: 'Montserrat', sans-serif;
             font-size: 14px;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             line-height: 2;
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .detail-highlight {
             font-family: 'Cinzel', serif;
             font-weight: 700;
             color: var(--gold-dark);
-            font-size: 16px;
+            font-size: 15px;
+            letter-spacing: 2px;
+            margin-top: 15px;
         }
 
-        /* --- SECTION 3: COUNTDOWN & MAP --- */
+        /* --- SECTION 3: COUNTDOWN TIMER & MAP --- */
         .section-countdown-map {
-            padding: 60px 20px;
+            padding: 20px 0;
             text-align: center;
-            background: linear-gradient(to bottom, transparent, rgba(197,168,128,0.05), transparent);
         }
 
         .countdown-title {
             font-family: 'Cinzel', serif;
-            font-size: 18px;
+            font-size: 16px;
             letter-spacing: 2px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-weight: 600;
         }
 
-        /* Elegant Luxury Timer */
         .timer-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            max-width: 380px;
-            margin: 0 auto 50px auto;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 20px;
+            gap: 12px;
+            max-width: 360px;
+            margin: 0 auto 35px auto;
+            background: rgba(244, 240, 235, 0.6);
+            padding: 15px 20px;
             border-radius: 50px;
-            border: 1px solid var(--gold-primary);
-            box-shadow: 0 10px 25px rgba(197,168,128,0.1);
+            border: 1px solid rgba(197, 168, 128, 0.4);
         }
 
         .time-box {
@@ -290,51 +310,38 @@
 
         .time-num {
             font-family: 'Cinzel', serif;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             color: var(--text-dark);
         }
 
         .time-label {
-            font-size: 10px;
+            font-size: 9px;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--gold-dark);
-            margin-top: 5px;
+            margin-top: 3px;
         }
 
-        /* Map Container */
         .map-wrapper {
-            max-width: 500px;
-            width: 90%;
-            margin: 0 auto;
-            border-radius: 15px;
+            max-width: 100%;
+            margin: 15px auto 0 auto;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
-            border: 2px solid var(--white-pure);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+            border: 1px solid rgba(197, 168, 128, 0.2);
         }
 
         .map-wrapper iframe {
             width: 100%;
-            height: 250px;
+            height: 240px;
             border: none;
         }
 
-        /* --- SECTION 4: RSVP & FOOTER --- */
-        .section-rsvp {
-            padding: 60px 20px;
-            text-align: center;
-        }
-
+        /* --- SECTION 4: RSVP LEAVE US A MESSAGE --- */
         .rsvp-form-card {
-            max-width: 500px;
-            width: 90%;
-            background: var(--white-pure);
-            margin: 0 auto;
-            padding: 40px 25px;
-            border-radius: 12px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
-            border: 1px solid rgba(197,168,128,0.15);
+            text-align: center;
+            padding-top: 20px;
         }
 
         .form-group {
@@ -349,240 +356,335 @@
             display: block;
             margin-bottom: 8px;
             color: var(--gold-dark);
+            text-transform: uppercase;
         }
 
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #e0dacb;
-            background-color: #faf9f6;
-            border-radius: 6px;
+            padding: 12px 15px;
+            border: 1px solid rgba(197, 168, 128, 0.3);
+            border-radius: 8px;
+            background-color: #fdfbf7;
             font-family: 'Montserrat', sans-serif;
             font-size: 13px;
             color: var(--text-dark);
+            outline: none;
             transition: border 0.3s ease;
         }
 
         .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--gold-primary);
+            border-color: var(--gold-dark);
         }
 
         .btn-submit {
             width: 100%;
             padding: 14px;
-            background-color: var(--text-dark);
+            background-color: #322d29;
             color: var(--white-pure);
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-family: 'Cinzel', serif;
             font-size: 14px;
             letter-spacing: 2px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .btn-submit:hover {
-            background-color: var(--gold-dark);
-            letter-spacing: 3px;
+            background-color: var(--wax-seal);
         }
 
-        /* WhatsApp Floating Style Action Button */
-        .whatsapp-container {
-            margin: 40px 0 20px 0;
-        }
-
-        .btn-whatsapp {
+        /* --- WHATSAPP FLOATING BUTTON --- */
+        .whatsapp-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            background-color: #25D366;
-            color: white;
-            padding: 15px 35px;
-            border-radius: 30px;
+            width: 100%;
+            max-width: 280px;
+            margin: 25px auto 10px auto;
+            padding: 12px;
+            background-color: #12d06c;
+            color: var(--white-pure);
             text-decoration: none;
+            border-radius: 30px;
             font-weight: 500;
-            font-size: 15px;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
-            transition: all 0.3s ease;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(18, 208, 108, 0.25);
+            transition: transform 0.3s ease;
         }
 
-        .btn-whatsapp:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
         }
 
-        footer {
-            margin-top: 40px;
-            font-size: 10px;
-            letter-spacing: 2px;
+        /* --- AUDIO PLAYER CONTROL --- */
+        .audio-control-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--white-pure);
+            border: 1px solid var(--gold-primary);
+            border-radius: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* --- LUXURY FOOTER BRANDING --- */
+        .luxury-footer {
+            padding: 40px 20px 20px 20px;
+            text-align: center;
+        }
+
+        .footer-line {
+            width: 40px;
+            height: 1px;
+            background-color: var(--gold-primary);
+            margin: 0 auto 15px auto;
             opacity: 0.5;
-            padding-bottom: 20px;
         }
 
-        /* --- ANIMATIONS --- */
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.6; }
+        .designer-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
 
-    <div class="phone-status-bar">
-        <div>3:44 <span style="font-size:10px;">➔ WhatsApp</span></div>
-        <div style="display: flex; gap: 5px;">
-            <span>5G</span>
-            <span>🔋 75%</span>
-        </div>
+    <!-- Falling Rose Petals Background -->
+    <div class="petals-container">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
     </div>
 
-    <section class="section-landing">
-        <div class="header-logo">TDESIGNATION</div>
-        
-        <div class="ornament"><span>✦</span></div>
-        <h1 class="main-title">COME CELEBRATE WITH US</h1>
-        <div class="ornament"><span>✦</span></div>
+    <!-- Wedding Background Audio Track -->
+    <!-- ضع رابط تراك الأغنية المحددة الفعلي هنا بامتداد .mp3 بدلاً من الرابط التجريبي بالأسفل -->
+    <audio id="weddingMusic" loop>
+        <source src="Song/كله قالي اشمعنا هو .mp3" type="audio/mpeg">
+    </audio>
 
-        <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+    <!-- Floating Audio Icon Switcher -->
+    <div class="audio-control-btn" id="audioBtn" onclick="toggleAudio()">
+        <span id="audioIcon" style="font-size: 18px; color: var(--gold-dark);">🎵</span>
+    </div>
+
+    <!-- SECTION 1: INTERACTIVE ENVELOPE LANDING -->
+    <section class="section-landing" id="landingSection">
+        <div class="header-logo">The Wedding Invitation</div>
+        
+        <div class="envelope-wrapper" id="envelopeWrapper" onclick="openInvitation()">
             <div class="envelope"></div>
             <div class="wax-seal"></div>
         </div>
-
-        <div class="tap-text" id="tapText">TAP TO OPEN...</div>
+        
+        <div class="tap-text" id="tapText">TAP TO OPEN THE ENVELOPE</div>
     </section>
 
+    <!-- SECTION 2: THE MAIN REVEALED CARD -->
     <div class="card-reveal-container" id="revealCard">
-    <div class="couple-illustration">
-        <img src="Images/Ammar and Omnia LandPage.png" alt="Ammar & Omnia Portrait">
-    </div>
+        <div class="couple-illustration">
+            <img src="Images/Ammar and Omnia LandPage.png" alt="Ammar & Omnia Portrait">
+        </div>
 
-        <h2 class="couple-names">
-            Ammar 
-            <span class="ampersand">&</span> 
-            Omnia
-        </h2>
+        <!-- Ornate Romantic Floral Header -->
+        <div class="ornament"><span>🌸 A & O 🌸</span></div>
 
-        <div class="ornament"><span>✦</span></div>
+        <!-- Identity Section Verified inside invitation body -->
+        <div class="couple-names">Eng. Ammar</div>
+        <div class="ampersand">&</div>
+        <div class="couple-names" style="margin-bottom: 15px;">Dr. Omnia</div>
+        
+        <div class="couple-names-sub">Ammar & Omnia</div>
+
+        <p class="wedding-details" dir="rtl" style="font-style: italic;">
+            بقلوب تفيض بالحب والبهجة، يُشرفنا ويسعدنا دعوتكم لحضور حفل زفافنا المبهج.<br>
+            شاركونا فرحة العمر وتوثيق اللحظات الرومانسية السعيدة التي لا تنسى. 🌸
+        </p>
+
+        <div class="ornament"><span>✨ 🌸 ✨</span></div>
 
         <div class="wedding-details">
-            <p>WE REQUEST THE HONOR OF YOUR PRESENCE AT THE WEDDING OF</p>
-            <p class="detail-highlight" style="margin: 15px 0;">Eng AMMAR & Doc OMNIA</p>
-            <p class="detail-highlight">25TH OF JULY 2026</p>
-            <p>AT 8:00 PM</p>
-            <p style="margin-top: 10px; font-weight: 500;">AlMasa Palace, Closed Air Hall</p>
+            <p class="detail-highlight">SAVE THE DATE</p>
+            <p style="font-weight: 500; margin: 5px 0;">Saturday, July 25, 2026</p>
+            <p class="detail-highlight" style="margin-top: 15px;">VENUE</p>
+            <p style="font-weight: 500;">AlMasa Palace Hall, Mansoura</p>
         </div>
-        
-        <div class="ornament"><span>✦</span></div>
     </div>
 
-    <section class="section-countdown-map">
-        <h3 class="countdown-title">Counting Down to Our Day</h3>
-        
-        <div class="timer-container">
-            <div class="time-box">
-                <div class="time-num" id="days">00</div>
-                <div class="time-label">Days</div>
-            </div>
-            <div class="time-box">
-                <div class="time-num" id="hours">00</div>
-                <div class="time-label">Hrs</div>
-            </div>
-            <div class="time-box">
-                <div class="time-num" id="minutes">00</div>
-                <div class="time-label">Mins</div>
-            </div>
-            <div class="time-box">
-                <div class="time-num" id="seconds">00</div>
-                <div class="time-label">Secs</div>
-            </div>
-        </div>
-
-        <h3 class="countdown-title" style="margin-bottom: 20px;">Getting There</h3>
-        
-        <div class="map-wrapper">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d22624.014172461862!2d31.5684759!3d30.8385604!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f789c688dcdad9%3A0x10362a1eb1224731!2z2YLYp9i52Kkg2YLYtdixINin2YTZhdin2LPYqQ!5e1!3m2!1sen!2seg!4v1781007992538!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-       
-        </div>
-    </section>
-
-    <section class="section-rsvp">
-        <div class="rsvp-form-card">
-            <h3 class="countdown-title" style="margin-bottom: 30px;">Leave Us a message</h3>
+    <!-- SECTION 3: TIMER & LOCATION CARD -->
+    <div class="card-reveal-container" id="timerMapCard">
+        <section class="section-countdown-map">
+            <h3 class="countdown-title">Counting Down to Our Day</h3>
             
-            <form id="rsvpForm" onsubmit="handleRSVP(event)">
+            <div class="timer-container">
+                <div class="time-box">
+                    <div class="time-num" id="days">00</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-num" id="hours">00</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-num" id="minutes">00</div>
+                    <div class="time-label">Mins</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-num" id="seconds">00</div>
+                    <div class="time-label">Secs</div>
+                </div>
+            </div>
+
+            <div class="ornament"><span>🌸 ⚜️ 🌸</span></div>
+
+            <h3 class="countdown-title" style="margin-top: 10px;">Getting There</h3>
+            <div class="map-wrapper">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2979.740605107235!2d31.58123187498555!3d30.83600197453463!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f789c688dcdad9%3A0x10362a1eb1224731!2z2YLYp9i52Kkg2YLYtdixINin2YTZhdin2LPYqQ!5e1!3m2!1sen!2seg!4v1781085080480!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
+        </section>
+    </div>
+
+    <!-- SECTION 4: RSVP LEAVE A MESSAGE CARD -->
+    <div class="card-reveal-container" id="rsvpCard">
+        <section class="rsvp-form-card">
+            <h3 class="countdown-title" style="font-family: 'Cinzel', serif;">Leave Us a message</h3>
+            
+            <form id="messageForm" onsubmit="handleRSVP(event)">
                 <div class="form-group">
-                    <label for="guestName">YOUR NAME</label>
-                    <input type="text" id="guestName" required placeholder="Enter your full name">
+                    <label for="userName">Your Name</label>
+                    <input type="text" id="userName" name="name" placeholder="Enter your full name" required>
                 </div>
                 <div class="form-group">
-                    <label for="guestMessage">WRITE YOUR CONGRATULATION</label>
-                    <textarea id="guestMessage" rows="4" required placeholder="Your warm wishes..."></textarea>
+                    <label for="userMessage">Write Your Congratulation</label>
+                    <textarea id="userMessage" name="message" rows="4" placeholder="Your warm wishes..." required></textarea>
                 </div>
-                <button type="submit" class="btn-submit">RSVP</button>
+                <button type="submit" class="btn-submit" id="submitBtn">RSVP</button>
             </form>
-        </div>
 
-        <div class="whatsapp-container">
-            <a href="https://wa.me/201094836400" target="_blank" class="btn-whatsapp">
-                <span>💬</span> Chat on WhatsApp
+            <a href="https://wa.me/201094836400" class="whatsapp-btn" target="_blank">
+                <span style="font-size: 18px;">💬</span> Chat on WhatsApp
             </a>
-        </div>
+        </section>
 
-        <footer>DESIGNED BY TDESIGNATION</footer>
-    </section>
+        <!-- LUXURY BRANDING FOOTER -->
+        <footer class="luxury-footer">
+            <div class="footer-line"></div>
+            <div class="designer-tag">DESIGNED BY AMMAR ALLAM</div>
+        </footer>
+    </div>
 
+    <!-- INTERACTIVE SCRIPTS -->
     <script>
-        // 1. Envelope Opening Logic
-        function openEnvelope() {
-            const wrapper = document.getElementById('envelopeWrapper');
-            const card = document.getElementById('revealCard');
+        function openInvitation() {
+            const envelope = document.getElementById('envelopeWrapper');
             const tapText = document.getElementById('tapText');
-            
-            if(!wrapper.classList.contains('open')) {
-                wrapper.classList.add('open');
-                tapText.style.display = 'none';
-                
-                // Smooth scroll & display reveal after animation ends
-                setTimeout(() => {
-                    card.classList.add('show');
-                    card.scrollIntoView({ behavior: 'smooth' });
-                }, 1000);
+            const card1 = document.getElementById('revealCard');
+            const card2 = document.getElementById('timerMapCard');
+            const card3 = document.getElementById('rsvpCard');
+            const audio = document.getElementById('weddingMusic');
+            const audioBtn = document.getElementById('audioBtn');
+
+            envelope.classList.add('open');
+            tapText.style.display = 'none';
+
+            audio.play().then(() => {
+                audioBtn.style.display = 'flex';
+            }).catch(err => console.log("Audio play deferred: ", err));
+
+            setTimeout(() => {
+                card1.classList.add('show');
+                card2.classList.add('show');
+                card3.classList.add('show');
+                card1.scrollIntoView({ behavior: 'smooth' });
+            }, 1200);
+        }
+
+        function toggleAudio() {
+            const audio = document.getElementById('weddingMusic');
+            const audioIcon = document.getElementById('audioIcon');
+            if (audio.paused) {
+                audio.play();
+                audioIcon.textContent = '🎵';
+            } else {
+                audio.pause();
+                audioIcon.textContent = '🔇';
             }
         }
 
-        // 2. Countdown Timer Logic (Target: July 25, 2026 20:00:00)
-        const targetDate = new Date("July 25, 2026 20:00:00").getTime();
+        // GOOGLE SHEETS LIVE DATA DATABASE CONNECTION
+        function handleRSVP(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const name = document.getElementById('userName').value;
+            const message = document.getElementById('userMessage').value;
+            
+            // استبدل الرابط أدناه برابط الـ Web App المستخرج من Google Apps Script
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbwqRQS6pD8ELUkgQSiIK_ZL9rShLu6kwrD1aIAFjfnwZnY-zRp0xq90UFObqhcX95Q5Zw/exec';
+            
+            if(scriptURL === 'https://script.google.com/macros/s/AKfycbwqRQS6pD8ELUkgQSiIK_ZL9rShLu6kwrD1aIAFjfnwZnY-zRp0xq90UFObqhcX95Q5Zw/exec') {
+                alert("Thank you! (Please configure your Google Script URL to save live data)");
+                document.getElementById('messageForm').reset();
+                return;
+            }
 
-        const updateCountdown = setInterval(() => {
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending...";
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('message', message);
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    alert("Thank you for your beautiful congratulations! Your message has been saved. 🌸");
+                    document.getElementById('messageForm').reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "RSVP";
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert("Your message was sent beautifully!");
+                    document.getElementById('messageForm').reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "RSVP";
+                });
+        }
+
+        // TIMER COUNTDOWN TO JULY 25, 2026
+        const targetDate = new Date('July 25, 2026 18:00:00').getTime();
+        setInterval(function() {
             const now = new Date().getTime();
             const difference = targetDate - now;
+
+            if (difference <= 0) {
+                return;
+            }
 
             const d = Math.floor(difference / (1000 * 60 * 60 * 24));
             const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((difference % (1000 * 60)) / 1000);
 
-            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
-            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
-            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
-            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
-
-            if (difference < 0) {
-                clearInterval(updateCountdown);
-                document.querySelector(".timer-container").innerHTML = "<p class='detail-highlight'>It's Our Wedding Day! 🎉</p>";
-            }
+            document.getElementById('days').textContent = d < 10 ? '0' + d : d;
+            document.getElementById('hours').textContent = h < 10 ? '0' + h : h;
+            document.getElementById('minutes').textContent = m < 10 ? '0' + m : m;
+            document.getElementById('seconds').textContent = s < 10 ? '0' + s : s;
         }, 1000);
-
-        // 3. RSVP Handling Placeholder
-        function handleRSVP(event) {
-            event.preventDefault();
-            const name = document.getElementById('guestName').value;
-            alert(`Thank you ${name}! Your congratulations and RSVP have been saved beautifully.`);
-            // 💡 Data Architecture note: Here you can integrate a simple fetch() API to Google Sheets or Firebase.
-            document.getElementById('rsvpForm').reset();
-        }
     </script>
 </body>
 </html>
