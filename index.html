@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Eng. Ammar & Dr. Omnia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- DESIGN SYSTEM & COLORS (Breeze 552 & Luxury Gold Aesthetic) --- */
+        :root {
+            --bg-breeze: #f4f0eb; /* Base Elegant Cream/Greige */
+            --gold-primary: #c5a880;
+            --gold-dark: #a0845b;
+            --text-dark: #3a3530;
+            --white-pure: #ffffff;
+            --wax-seal: #2a2421;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-breeze);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            /* Subtle Sophisticated Pattern Overlay */
+            background-image: radial-gradient(rgba(197, 168, 128, 0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        /* --- MOCKUP PHONE STATUS BAR --- */
+        .phone-status-bar {
+            width: 100%;
+            height: 30px;
+            background-color: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            font-size: 12px;
+            font-weight: 500;
+            position: absolute;
+            top: 0;
+            z-index: 100;
+            opacity: 0.7;
+        }
+
+        /* --- GLOBAL ORNATE ELEMENTS --- */
+        .ornament {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .ornament::before, .ornament::after {
+            content: "";
+            display: inline-block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
+            margin: 0 10px;
+        }
+        .ornament span {
+            font-size: 18px;
+            color: var(--gold-primary);
+        }
+
+        /* --- SECTION 1: LANDING & INTERACTIVE ENVELOPE --- */
+        .section-landing {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .header-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+            opacity: 0.8;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+
+        /* ENVELOPE CONTAINER */
+        .envelope-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            margin: 40px auto;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .envelope {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #eae3da;
+            border-radius: 4px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            transition: transform 0.8s ease;
+        }
+
+        /* Envelope Flap */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-top: 150px solid #dfd6c8;
+            transform-origin: top;
+            transition: transform 0.6s ease 0.4s, z-index 0.2s ease 0.4s;
+            z-index: 4;
+        }
+
+        /* Wax Seal */
+        .wax-seal {
+            position: absolute;
+            top: 130px;
+            left: calc(50% - 30px);
+            width: 60px;
+            height: 60px;
+            background-color: var(--wax-seal);
+            border-radius: 50%;
+            z-index: 5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .wax-seal::after {
+            content: "A&O";
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-size: 14px;
+            font-weight: bold;
+            border: 1px dashed rgba(197, 168, 128, 0.4);
+            border-radius: 50%;
+            padding: 8px 5px;
+        }
+
+        /* TAP TO OPEN TEXT */
+        .tap-text {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            font-size: 13px;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        /* OPEN STATE ANIMATIONS */
+        .envelope-wrapper.open .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-wrapper.open .wax-seal {
+            transform: scale(0) rotate(90deg);
+        }
+
+        /* --- SECTION 2: THE REVEALED CARD --- */
+        .card-reveal-container {
+            max-width: 500px;
+            width: 90%;
+            background-color: var(--white-pure);
+            border-radius: 12px;
+            padding: 40px 25px;
+            margin: 0 auto 50px auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            border: 1px solid rgba(197, 168, 128, 0.2);
+            text-align: center;
+            display: none; /* Triggered via JS after opening envelope */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .card-reveal-container.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cartoon Portrait Placeholder */
+        .couple-illustration {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            background: #fdfbf7;
+            border: 2px dashed var(--gold-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .couple-illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .couple-names {
+            font-family: 'Alex Brush', cursive;
+            font-size: 48px;
+            color: var(--text-dark);
+            margin: 15px 0;
+            line-height: 1.2;
+        }
+
+        .ampersand {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            color: var(--gold-primary);
+            display: block;
+            margin: 5px 0;
+        }
+
+        .wedding-details {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            letter-spacing: 1px;
+            line-height: 2;
+            margin-top: 20px;
+        }
+
+        .detail-highlight {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--gold-dark);
+            font-size: 16px;
+        }
+
+        /* --- SECTION 3: COUNTDOWN & MAP --- */
+        .section-countdown-map {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, transparent, rgba(197,168,128,0.05), transparent);
+        }
+
+        .countdown-title {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        /* Elegant Luxury Timer */
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            max-width: 380px;
+            margin: 0 auto 50px auto;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 50px;
+            border: 1px solid var(--gold-primary);
+            box-shadow: 0 10px 25px rgba(197,168,128,0.1);
+        }
+
+        .time-box {
+            flex: 1;
+        }
+
+        .time-num {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .time-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold-dark);
+            margin-top: 5px;
+        }
+
+        /* Map Container */
+        .map-wrapper {
+            max-width: 500px;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            border: 2px solid var(--white-pure);
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+        }
+
+        /* --- SECTION 4: RSVP & FOOTER --- */
+        .section-rsvp {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .rsvp-form-card {
+            max-width: 500px;
+            width: 90%;
+            background: var(--white-pure);
+            margin: 0 auto;
+            padding: 40px 25px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.04);
+            border: 1px solid rgba(197,168,128,0.15);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold-dark);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0dacb;
+            background-color: #faf9f6;
+            border-radius: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            color: var(--text-dark);
+            transition: border 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold-primary);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--text-dark);
+            color: var(--white-pure);
+            border: none;
+            border-radius: 6px;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--gold-dark);
+            letter-spacing: 3px;
+        }
+
+        /* WhatsApp Floating Style Action Button */
+        .whatsapp-container {
+            margin: 40px 0 20px 0;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            opacity: 0.5;
+            padding-bottom: 20px;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.6; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-status-bar">
+        <div>3:44 <span style="font-size:10px;">➔ WhatsApp</span></div>
+        <div style="display: flex; gap: 5px;">
+            <span>5G</span>
+            <span>🔋 75%</span>
+        </div>
+    </div>
+
+    <section class="section-landing">
+        <div class="header-logo">TDESIGNATION</div>
+        
+        <div class="ornament"><span>✦</span></div>
+        <h1 class="main-title">COME CELEBRATE WITH US</h1>
+        <div class="ornament"><span>✦</span></div>
+
+        <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+            <div class="envelope"></div>
+            <div class="wax-seal"></div>
+        </div>
+
+        <div class="tap-text" id="tapText">TAP TO OPEN...</div>
+    </section>
+
+    <div class="card-reveal-container" id="revealCard">
+        <div class="couple-illustration">
+            <img src="https://drive.google.com/uc?export=view&id=1CMgq-SB9ey1DeMEfl5yo-5gxfr-YLZpR" alt="Ammar & Omnia Portrait">
+        </div>
+
+        <h2 class="couple-names">
+            Ammar 
+            <span class="ampersand">&</span> 
+            Omnia
+        </h2>
+
+        <div class="ornament"><span>✦</span></div>
+
+        <div class="wedding-details">
+            <p>WE REQUEST THE HONOR OF YOUR PRESENCE AT THE WEDDING OF</p>
+            <p class="detail-highlight" style="margin: 15px 0;">Eng AMMAR & Doc OMNIA</p>
+            <p class="detail-highlight">25TH OF JULY 2026</p>
+            <p>AT 8:00 PM</p>
+            <p style="margin-top: 10px; font-weight: 500;">AlMasa Palace, Closed Air Hall</p>
+        </div>
+        
+        <div class="ornament"><span>✦</span></div>
+    </div>
+
+    <section class="section-countdown-map">
+        <h3 class="countdown-title">Counting Down to Our Day</h3>
+        
+        <div class="timer-container">
+            <div class="time-box">
+                <div class="time-num" id="days">00</div>
+                <div class="time-label">Days</div>
+            </div>
+            <div class="time-box">
+                <div class="time-num" id="hours">00</div>
+                <div class="time-label">Hrs</div>
+            </div>
+            <div class="time-box">
+                <div class="time-num" id="minutes">00</div>
+                <div class="time-label">Mins</div>
+            </div>
+            <div class="time-box">
+                <div class="time-num" id="seconds">00</div>
+                <div class="time-label">Secs</div>
+            </div>
+        </div>
+
+        <h3 class="countdown-title" style="margin-bottom: 20px;">Getting There</h3>
+        
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d22624.014172461862!2d31.5684759!3d30.8385604!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f789c688dcdad9%3A0x10362a1eb1224731!2z2YLYp9i52Kkg2YLYtdixINin2YTZhdin2LPYqQ!5e1!3m2!1sen!2seg!4v1781007992538!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+       
+        </div>
+    </section>
+
+    <section class="section-rsvp">
+        <div class="rsvp-form-card">
+            <h3 class="countdown-title" style="margin-bottom: 30px;">Leave Us a message</h3>
+            
+            <form id="rsvpForm" onsubmit="handleRSVP(event)">
+                <div class="form-group">
+                    <label for="guestName">YOUR NAME</label>
+                    <input type="text" id="guestName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="guestMessage">WRITE YOUR CONGRATULATION</label>
+                    <textarea id="guestMessage" rows="4" required placeholder="Your warm wishes..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">RSVP</button>
+            </form>
+        </div>
+
+        <div class="whatsapp-container">
+            <a href="https://wa.me/201094836400" target="_blank" class="btn-whatsapp">
+                <span>💬</span> Chat on WhatsApp
+            </a>
+        </div>
+
+        <footer>DESIGNED BY TDESIGNATION</footer>
+    </section>
+
+    <script>
+        // 1. Envelope Opening Logic
+        function openEnvelope() {
+            const wrapper = document.getElementById('envelopeWrapper');
+            const card = document.getElementById('revealCard');
+            const tapText = document.getElementById('tapText');
+            
+            if(!wrapper.classList.contains('open')) {
+                wrapper.classList.add('open');
+                tapText.style.display = 'none';
+                
+                // Smooth scroll & display reveal after animation ends
+                setTimeout(() => {
+                    card.classList.add('show');
+                    card.scrollIntoView({ behavior: 'smooth' });
+                }, 1000);
+            }
+        }
+
+        // 2. Countdown Timer Logic (Target: July 25, 2026 20:00:00)
+        const targetDate = new Date("July 25, 2026 20:00:00").getTime();
+
+        const updateCountdown = setInterval(() => {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = d < 10 ? "0" + d : d;
+            document.getElementById("hours").innerText = h < 10 ? "0" + h : h;
+            document.getElementById("minutes").innerText = m < 10 ? "0" + m : m;
+            document.getElementById("seconds").innerText = s < 10 ? "0" + s : s;
+
+            if (difference < 0) {
+                clearInterval(updateCountdown);
+                document.querySelector(".timer-container").innerHTML = "<p class='detail-highlight'>It's Our Wedding Day! 🎉</p>";
+            }
+        }, 1000);
+
+        // 3. RSVP Handling Placeholder
+        function handleRSVP(event) {
+            event.preventDefault();
+            const name = document.getElementById('guestName').value;
+            alert(`Thank you ${name}! Your congratulations and RSVP have been saved beautifully.`);
+            // 💡 Data Architecture note: Here you can integrate a simple fetch() API to Google Sheets or Firebase.
+            document.getElementById('rsvpForm').reset();
+        }
+    </script>
+</body>
+</html>
